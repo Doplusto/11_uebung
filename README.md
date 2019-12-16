@@ -49,6 +49,16 @@ the original string.
 
 ```
 
+**Lösung**
+
+```python
+def xmastree(n):
+    for i in range(n):
+        print(("+" * (i * 2 + 1)).center(n * 2 - 1))
+    print("| |".center(n * 2 - 1))
+
+```
+
 ## Aufgabe 2: Ein Matplotlib-Weihnachtsbaum
 
 In der Vorlesung hatten Sie gesehen, wie einfach es ist mit Python eine Funktion zu plotten. Schreiben Sie ein Skript, dass einen Weihnachtsbaum plotted.
@@ -58,6 +68,18 @@ Dieser könnte wie folgt aussehen:
 ![Weihnachtsbaum](./img/xmastree.png)
 
 Verwenden Sie hierzu die Library `matplotlib`.
+
+**Lösung**
+
+```python
+def xmas():
+  x = [5, 5, 0, 5, 1, 5, 2, 6, 10, 7, 11, 7, 12, 7, 7]
+  y = [0, 1, 1, 2, 2, 3, 3, 4,  3, 3,  2, 2,  1, 1, 0]
+  plt.plot(x, y, 'green')
+  plt.title("X-Mas Tree")
+  plt.show()
+  plt.savefig("xmas.png")
+```
 
 ## Aufgabe 3: Python-Weihnachtsgrüße
 
@@ -78,6 +100,28 @@ Schreiben Sie ein Programm, das die Datei `Name.txt` einliest (die Datei befinde
 `Frohe Weihnachten vom Weihnachts[mann|frau], lieber <Vorname>`
 
 haben.
+
+**Lösung**
+
+```python
+list = []
+
+with open('Name.txt', 'r') as f:
+  f.readline()
+  for x in f:
+    line = x.split(',')
+    if int(line[1]) > 3 and int(line[1]) < 10:
+      if 'm' in line[2]:
+        list.append(str.format('Frohe Weihnachten vom Weihnachtsmann, lieber %s' % line[0].split()[0]))
+      elif 'w' in line[2]:
+        list.append(str.format('Frohe Weihnachten vom Weihnachtsmann, liebe %s' % line[0].split()[0]))
+
+out = str.join('\n', list)
+with open('Gruesse.txt', 'w') as f:
+    f.writelines(out)
+
+```
+
 
 ### Aufgabe 4: Frohe Weihnachten!
 
